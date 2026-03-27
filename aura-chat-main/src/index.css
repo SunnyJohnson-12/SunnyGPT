@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 270 30% 98%;
+    --foreground: 260 20% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 260 20% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 20% 20%;
+
+    --primary: 330 80% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 260 60% 92%;
+    --secondary-foreground: 260 30% 30%;
+
+    --muted: 260 20% 94%;
+    --muted-foreground: 260 10% 50%;
+
+    --accent: 200 80% 88%;
+    --accent-foreground: 200 40% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 260 20% 90%;
+    --input: 260 20% 90%;
+    --ring: 330 80% 65%;
+
+    --radius: 1rem;
+
+    --bubble-user: 330 80% 65%;
+    --bubble-user-foreground: 0 0% 100%;
+    --bubble-ai: 260 40% 96%;
+    --bubble-ai-foreground: 260 20% 20%;
+    --chat-bg: 270 30% 98%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 260 20% 8%;
+    --foreground: 260 10% 90%;
+    --card: 260 20% 12%;
+    --card-foreground: 260 10% 90%;
+    --popover: 260 20% 12%;
+    --popover-foreground: 260 10% 90%;
+    --primary: 330 80% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 30% 20%;
+    --secondary-foreground: 260 10% 90%;
+    --muted: 260 20% 18%;
+    --muted-foreground: 260 10% 60%;
+    --accent: 200 40% 25%;
+    --accent-foreground: 200 80% 88%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 260 20% 20%;
+    --input: 260 20% 20%;
+    --ring: 330 80% 65%;
+    --bubble-user: 330 70% 55%;
+    --bubble-user-foreground: 0 0% 100%;
+    --bubble-ai: 260 20% 18%;
+    --bubble-ai-foreground: 260 10% 90%;
+    --chat-bg: 260 20% 8%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Quicksand', sans-serif;
+  }
+}
+
+@layer utilities {
+  .bubble-user {
+    background: linear-gradient(135deg, hsl(330 80% 65%), hsl(300 60% 70%));
+    color: hsl(var(--bubble-user-foreground));
+  }
+  .bubble-ai {
+    background: hsl(var(--bubble-ai));
+    color: hsl(var(--bubble-ai-foreground));
+  }
+}
+
+@layer components {
+  @keyframes message-in {
+    0% { opacity: 0; transform: translateY(16px) scale(0.97); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes typing-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+  .animate-message-in {
+    animation: message-in 0.35s ease-out both;
+  }
+  .typing-dot {
+    animation: typing-bounce 1.2s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+}

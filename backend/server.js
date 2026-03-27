@@ -21,6 +21,14 @@ if (!process.env.GEMINI_API_KEY) {
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "missing_key");
 
 /**
+ * GET /
+ * Health check route to confirm the backend is up and running on Vercel
+ */
+app.get('/', (req, res) => {
+  res.send('Sunny\'s GPT Backend API is actively running! 🚀');
+});
+
+/**
  * POST /api/chat
  * Accepts { message: string }
  * Returns { response: string }

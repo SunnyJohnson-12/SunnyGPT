@@ -42,7 +42,7 @@ app.post('/api/chat', async (req, res) => {
     }
 
     // Call Gemini model as configured in environment
-    const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-3.0-flash' });
+    const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-1.5-flash' });
     const result = await model.generateContent(message);
 
     res.json({ response: result.response.text() });
@@ -55,9 +55,12 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Backend server is running on http://localhost:${port}`);
-  console.log(`Ready to serve /api/chat endpoints using Gemini Flash 3`);
-});
-// Force restart to load updated .env
-// Force restart to load updated .env 3
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Backend server is running on http://localhost:${port}`);
+    console.log(`Ready to serve /api/chat endpoints using Gemini Flash`);
+  });
+}
+
+// Export the Express app for Vercel Serverless Functions
+export default app;
